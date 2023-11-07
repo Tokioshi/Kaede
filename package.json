@@ -15,5 +15,13 @@
   },
   "devDependencies": {
     "eslint": "^8.53.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tokioshi/Kaede.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tokioshi/Kaede/issues"
+  },
+  "homepage": "https://github.com/Tokioshi/Kaede#README"
 }
