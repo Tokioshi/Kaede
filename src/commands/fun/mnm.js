@@ -1,10 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { capitalizeFirstLetter } = require('../../function/index');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('jail')
-    .setDescription('Jail avatar')
+    .setName('mnm')
+    .setDescription('Make your picture into a shape of m&ms!')
     .addUserOption(option => 
       option.setName('user')
         .setDescription('Mention a user'))
@@ -15,9 +14,9 @@ module.exports = {
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle(`\`${capitalizeFirstLetter(interaction.user.username)}\` jail \`${capitalizeFirstLetter(user.username)}\`!`)
+        .setTitle("MNM!")
         .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/jail?image=${user.displayAvatarURL({ extension: 'png' })}`)
+        .setImage(`https://api.popcat.xyz/mnm?image=${user.displayAvatarURL({ extension: 'png' })}`)
       ]
     });
   },

@@ -3,8 +3,8 @@ const { capitalizeFirstLetter } = require('../../function/index');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('jail')
-    .setDescription('Jail avatar')
+    .setName('wanted')
+    .setDescription('Create a fake wanted poster with your image!')
     .addUserOption(option => 
       option.setName('user')
         .setDescription('Mention a user'))
@@ -15,9 +15,9 @@ module.exports = {
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle(`\`${capitalizeFirstLetter(interaction.user.username)}\` jail \`${capitalizeFirstLetter(user.username)}\`!`)
+        .setTitle(`\`${capitalizeFirstLetter(interaction.user.username)}\` is wanted!`)
         .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/jail?image=${user.displayAvatarURL({ extension: 'png' })}`)
+        .setImage(`https://api.popcat.xyz/wanted?image=${user.displayAvatarURL({ extension: 'png' })}`)
       ]
     });
   },
