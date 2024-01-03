@@ -10,7 +10,7 @@ module.exports = {
           embeds: [
             new EmbedBuilder()
             .setColor('Red')
-            .setDescription(`Uknow command \`${interaction.commandName}\`.`)
+            .setDescription(`Uknow command \`${interaction.commandName}\`, probably deleted command.`)
           ],
           ephemeral: true
         });
