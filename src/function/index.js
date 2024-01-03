@@ -51,4 +51,4 @@ module.exports = {
   getUserPermissions,
   dateForm,
   dateForm2
-};
+}; 
