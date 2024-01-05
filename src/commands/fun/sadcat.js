@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('sadcat')
-    .setDescription('DidMake a Sad Cat Meme!')
+    .setDescription('Make a Sad Cat Meme!')
     .addStringOption(option =>
       option.setName('text')
         .setDescription('Input text to generate image!')
