@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Options, Collection } = require('discord.js');
 
 class Bot extends Client {
   constructor() {
@@ -8,6 +8,25 @@ class Bot extends Client {
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers
       ],
+      makeCache: Options.cacheWithLimits({
+        ...Options.DefaultMakeCacheSettings,
+        ReactionManager: 0,
+        GuildMemberManager: {
+          maxSize: 200,
+          keepOverLimit: member => member.id === member.client.user.id,
+        },
+      }),
+      sweepers: {
+        ...Options.DefaultSweeperSettings,
+        messages: {
+          interval: 3_600,
+          lifetime: 1_800,
+        },
+        users: {
+          interval: 3_600,
+          filter: () => user => user.bot && user.id !== user.client.user.id,
+        },
+      },
     });
 
     this.commands = new Collection();
