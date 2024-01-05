@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Options, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Options, Collection } = require('discord.js');
 
 class Bot extends Client {
   constructor() {
@@ -27,6 +27,7 @@ class Bot extends Client {
           filter: () => user => user.bot && user.id !== user.client.user.id,
         },
       },
+      partials: [Partials.Channel, Partials.GuildMember, Partials.User],
     });
 
     this.commands = new Collection();
