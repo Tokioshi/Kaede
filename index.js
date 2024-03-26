@@ -1,5 +1,5 @@
-require('dotenv').config();
-const { Client, GatewayIntentBits, Partials, Options, Collection } = require('discord.js');
+const { token } = require('dotenv').config().parsed;
+const { Client, GatewayIntentBits, ActivityType, Partials, Options, Collection } = require('discord.js');
 
 class Bot extends Client {
   constructor() {
@@ -8,6 +8,14 @@ class Bot extends Client {
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers
       ],
+      presence: {
+        activities: [{
+          type: ActivityType.Custom,
+          name: 'customstatus',
+          state: '🔒 Locks'
+        }],
+        status: 'dnd',
+      },
       makeCache: Options.cacheWithLimits({
         ...Options.DefaultMakeCacheSettings,
         ReactionManager: 0,
@@ -38,4 +46,4 @@ class Bot extends Client {
 };
 
 const client = new Bot();
-client.login(process.env.token);
+client.login(token);
