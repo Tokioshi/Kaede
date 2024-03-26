@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random kiss image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/kiss');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/kiss');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Kiss')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('Kiss')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };

@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random bully image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/bully');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/bully');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Bully')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('Bully')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };

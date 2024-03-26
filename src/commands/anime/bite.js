@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random bite image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/bite');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/bite');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Bite')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('Bite')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };

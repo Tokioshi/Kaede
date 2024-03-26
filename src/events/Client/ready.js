@@ -9,9 +9,9 @@ module.exports = {
       activities: [{
         type: ActivityType.Custom,
         name: 'customstatus',
-        state: '✈️ On Progress!'
+        state: '✈️ On Progress!',
       }],
-      status: 'idle'
+      status: 'idle',
     });
   },
 };

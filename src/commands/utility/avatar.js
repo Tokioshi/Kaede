@@ -9,15 +9,15 @@ module.exports = {
         .setDescription('Mention user to look into their avatar!'))
     .setDMPermission(false),
   async execute(interaction) {
-    let user = interaction.options.getUser('user') || interaction.user;
+    const user = interaction.options.getUser('user') || interaction.user;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle(`${user.username}'s avatar`)
-        .setColor(interaction.client.config.embed.default)
-        .setImage(user.displayAvatarURL({ extension: 'png', forceStatic: true, size: 512 }))
-      ]
+          .setTitle(`${user.username}'s avatar`)
+          .setColor(interaction.client.config.embed.default)
+          .setImage(user.displayAvatarURL({ extension: 'png', forceStatic: true, size: 512 })),
+      ],
     });
   },
 };

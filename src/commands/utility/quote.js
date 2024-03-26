@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get random Quotes!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.popcat.xyz/quote');
-    let json = await res.data;
+    const res = await axios.get('https://api.popcat.xyz/quote');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Random quote!')
-        .setColor(interaction.client.config.embed.default)
-        .setDescription(`${json.quote}`)
-      ]
+          .setTitle('Random quote!')
+          .setColor(interaction.client.config.embed.default)
+          .setDescription(`${json.quote}`),
+      ],
     });
   },
 };

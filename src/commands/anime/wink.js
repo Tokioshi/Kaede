@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random wink image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/wink');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/wink');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Wink')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('Wink')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };

@@ -1,6 +1,6 @@
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-};
+}
 
 function getUserPermissions(member) {
   const allowedPermissions = [
@@ -15,15 +15,15 @@ function getUserPermissions(member) {
     'KickMembers',
     'BanMembers',
     'MentionEveryone',
-    'MoveMembers'
+    'MoveMembers',
   ];
 
   const hasAdministratorPermission = member.permissions.has('Administrator');
 
-  let permissions = hasAdministratorPermission ? allowedPermissions : member.permissions.toArray().filter(perm => allowedPermissions.includes(perm));
+  const permissions = hasAdministratorPermission ? allowedPermissions : member.permissions.toArray().filter(perm => allowedPermissions.includes(perm));
 
   return permissions.length ? permissions.map(perm => perm.replace(/([a-z])([A-Z])/g, '$1 $2')).join(', ') : 'None';
-};
+}
 
 function dateForm(date) {
   const dateObject = new Date(date);
@@ -35,7 +35,7 @@ function dateForm(date) {
   const formattedDate = `${year}-${month}-${day}`;
 
   return formattedDate;
-};
+}
 
 function dateForm2(date) {
   const dateObject = new Date(date);
@@ -50,5 +50,5 @@ module.exports = {
   capitalizeFirstLetter,
   getUserPermissions,
   dateForm,
-  dateForm2
-}; 
+  dateForm2,
+};

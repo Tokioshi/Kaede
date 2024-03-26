@@ -10,46 +10,47 @@ module.exports = {
         .setDescription('Input the element name to get info!'))
     .setDMPermission(false),
   async execute(interaction) {
-    let element = interaction.options.getString('element');
-    if(element) {
-      let res = await axios.get(`https://api.popcat.xyz/periodic-table?element=${element}`);
-      let json = await res.data;
+    const element = interaction.options.getString('element');
+    if (element) {
+      const res = await axios.get(`https://api.popcat.xyz/periodic-table?element=${element}`);
+      const json = await res.data;
 
-      if(json.error) {
+      if (json.error) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-            .setColor(interaction.client.config.embed.fail)
-            .setDescription('Please input a valid element!')
+              .setColor(interaction.client.config.embed.fail)
+              .setDescription('Please input a valid element!'),
           ],
-          ephemeral: true
+          ephemeral: true,
         });
-      };
-      
-      interaction.reply({
-        embeds: [
-          new EmbedBuilder()
-          .setTitle(`${json.name} | ${json.symbol}`)
-          .setColor(interaction.client.config.embed.default)
-          .setThumbnail(json.image)
-          .setDescription(`Atomic Number: ${json.atomic_number}\nAtomic Mass: ${json.atomic_mass}\nPeriod: ${json.period}\nPhase: ${json.phase}\nDiscovered by: ${json.discovered_by}\nSummary: ${json.summary}`)
-          .setImage(json.color_image)
-        ]
-      });
-    } else {
-      let res = await axios.get('https://api.popcat.xyz/periodic-table/random');
-      let json = await res.data;
+      }
 
       interaction.reply({
         embeds: [
           new EmbedBuilder()
-          .setTitle(`${json.name} | ${json.symbol}`)
-          .setColor(interaction.client.config.embed.default)
-          .setThumbnail(json.image)
-          .setDescription(`Atomic Number: ${json.atomic_number}\nAtomic Mass: ${json.atomic_mass}\nPeriod: ${json.period}\nPhase: ${json.phase}\nDiscovered by: ${json.discovered_by}\nSummary: ${json.summary}`)
-          .setImage(json.color_image)
-        ]
+            .setTitle(`${json.name} | ${json.symbol}`)
+            .setColor(interaction.client.config.embed.default)
+            .setThumbnail(json.image)
+            .setDescription(`Atomic Number: ${json.atomic_number}\nAtomic Mass: ${json.atomic_mass}\nPeriod: ${json.period}\nPhase: ${json.phase}\nDiscovered by: ${json.discovered_by}\nSummary: ${json.summary}`)
+            .setImage(json.color_image),
+        ],
       });
-    };
+    }
+    else {
+      const res = await axios.get('https://api.popcat.xyz/periodic-table/random');
+      const json = await res.data;
+
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(`${json.name} | ${json.symbol}`)
+            .setColor(interaction.client.config.embed.default)
+            .setThumbnail(json.image)
+            .setDescription(`Atomic Number: ${json.atomic_number}\nAtomic Mass: ${json.atomic_mass}\nPeriod: ${json.period}\nPhase: ${json.phase}\nDiscovered by: ${json.discovered_by}\nSummary: ${json.summary}`)
+            .setImage(json.color_image),
+        ],
+      });
+    }
   },
 };

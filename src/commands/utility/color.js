@@ -10,43 +10,44 @@ module.exports = {
         .setDescription('Input a valid hex code to get info!'))
     .setDMPermission(false),
   async execute(interaction) {
-    let hcode = interaction.options.getString('hex-code');
-    if(hcode) {
-      let res = await axios.get(`https://api.popcat.xyz/color/${hcode}`);
-      let json = await res.data;
+    const hcode = interaction.options.getString('hex-code');
+    if (hcode) {
+      const res = await axios.get(`https://api.popcat.xyz/color/${hcode}`);
+      const json = await res.data;
 
-      if(json.error) {
+      if (json.error) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-            .setColor(interaction.client.config.embed.fail)
-            .setDescription('Please input a valid hex-code!')
+              .setColor(interaction.client.config.embed.fail)
+              .setDescription('Please input a valid hex-code!'),
           ],
-          ephemeral: true
+          ephemeral: true,
         });
-      };
-      
-      interaction.reply({
-        embeds: [
-          new EmbedBuilder()
-          .setTitle(`${json.name}`)
-          .setColor(json.hex)
-          .setDescription(`Hex: ${json.hex} | Rgb: ${json.rgb} | Brightened: ${json.brightened}`)
-          .setImage(json.color_image)
-        ]
-      });
-    } else {
-      let res = await axios.get('https://api.popcat.xyz/randomcolor');
-      let json = await res.data;
+      }
 
       interaction.reply({
         embeds: [
           new EmbedBuilder()
-          .setTitle(`${json.name} | ${json.hex}`)
-          .setColor(`${json.hex}`)
-          .setImage(json.image)
-        ]
+            .setTitle(`${json.name}`)
+            .setColor(json.hex)
+            .setDescription(`Hex: ${json.hex} | Rgb: ${json.rgb} | Brightened: ${json.brightened}`)
+            .setImage(json.color_image),
+        ],
       });
-    };
+    }
+    else {
+      const res = await axios.get('https://api.popcat.xyz/randomcolor');
+      const json = await res.data;
+
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(`${json.name} | ${json.hex}`)
+            .setColor(`${json.hex}`)
+            .setImage(json.image),
+        ],
+      });
+    }
   },
 };

@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random hug image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/hug');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/hug');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Hug')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('Hug')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };

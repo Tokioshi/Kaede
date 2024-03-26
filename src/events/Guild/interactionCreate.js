@@ -3,33 +3,34 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
-    if(interaction.isChatInputCommand()) {
+    if (interaction.isChatInputCommand()) {
       const command = interaction.client.commands.get(interaction.commandName);
-      if(!command) {
+      if (!command) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-            .setColor('Red')
-            .setDescription(`Uknow command \`${interaction.commandName}\`, probably deleted command.`)
+              .setColor('Red')
+              .setDescription(`Uknow command \`${interaction.commandName}\`, probably deleted command.`),
           ],
-          ephemeral: true
+          ephemeral: true,
         });
         return;
-      };
-  
+      }
+
       try {
-        await command.execute(interaction)
-      } catch (error) {
+        await command.execute(interaction);
+      }
+      catch (error) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
-            .setColor('Red')
-            .setDescription(`There's a problem when executing \`${interaction.commandName}\`.`)
+              .setColor('Red')
+              .setDescription(`There's a problem when executing \`${interaction.commandName}\`.`),
           ],
-          ephemeral: true
+          ephemeral: true,
         });
         console.log(error);
-      };
-    };
+      }
+    }
   },
 };

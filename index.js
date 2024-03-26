@@ -6,13 +6,13 @@ class Bot extends Client {
     super({
       intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers
+        GatewayIntentBits.GuildMembers,
       ],
       presence: {
         activities: [{
           type: ActivityType.Custom,
           name: 'customstatus',
-          state: '🔒 Locks'
+          state: '🔒 Locks',
         }],
         status: 'dnd',
       },
@@ -42,8 +42,8 @@ class Bot extends Client {
     this.config = require('./src/config/config');
 
     require('./src/handler/index')(this);
-  };
-};
+  }
+}
 
 const client = new Bot();
 client.login(token);

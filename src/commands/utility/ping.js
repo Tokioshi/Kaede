@@ -9,9 +9,9 @@ module.exports = {
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setColor(interaction.client.config.embed.default)
-        .setDescription(`Pong! \`${interaction.client.ws.ping}\` ms!`)
-      ]
+          .setColor(interaction.client.config.embed.default)
+          .setDescription(`Pong! \`${interaction.client.ws.ping}\` ms!`),
+      ],
     });
   },
 };

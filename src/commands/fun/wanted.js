@@ -5,20 +5,20 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('wanted')
     .setDescription('Create a fake wanted poster with your image!')
-    .addUserOption(option => 
+    .addUserOption(option =>
       option.setName('user')
         .setDescription('Mention a user'))
     .setDMPermission(false),
   async execute(interaction) {
-    let user = interaction.options.getUser('user') || interaction.user;
+    const user = interaction.options.getUser('user') || interaction.user;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle(`\`${capitalizeFirstLetter(interaction.user.username)}\` is wanted!`)
-        .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/wanted?image=${user.displayAvatarURL({ extension: 'png' })}`)
-      ]
+          .setTitle(`\`${capitalizeFirstLetter(interaction.user.username)}\` is wanted!`)
+          .setColor(interaction.client.config.embed.default)
+          .setImage(`https://api.popcat.xyz/wanted?image=${user.displayAvatarURL({ extension: 'png' })}`),
+      ],
     });
   },
 };

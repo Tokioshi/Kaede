@@ -10,15 +10,15 @@ module.exports = {
         .setRequired(true))
     .setDMPermission(false),
   async execute(interaction) {
-    let text = interaction.options.getString('text');
+    const text = interaction.options.getString('text');
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle("That's sad...")
-        .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/sadcat?text=${encodeURIComponent(text)}`)
-      ]
+          .setTitle('That\'s sad...')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(`https://api.popcat.xyz/sadcat?text=${encodeURIComponent(text)}`),
+      ],
     });
   },
 };

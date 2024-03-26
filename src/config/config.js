@@ -4,6 +4,6 @@ module.exports = {
   embed: {
     default: '#ffaf27',
     fail: '#c92424',
-    success: '24c74f'
-  }
+    success: '24c74f',
+  },
 };

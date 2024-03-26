@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Random fact!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.popcat.xyz/fact');
-    let json = await res.data;
+    const res = await axios.get('https://api.popcat.xyz/fact');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Random fact!')
-        .setColor(interaction.client.config.embed.default)
-        .setDescription(`${json.fact}`)
-      ]
+          .setTitle('Random fact!')
+          .setColor(interaction.client.config.embed.default)
+          .setDescription(`${json.fact}`),
+      ],
     });
   },
 };

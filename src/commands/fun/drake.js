@@ -14,16 +14,16 @@ module.exports = {
         .setRequired(true))
     .setDMPermission(false),
   async execute(interaction) {
-    let firstText = interaction.options.getString('text-1');
-    let secondText = interaction.options.getString('text-2')
+    const firstText = interaction.options.getString('text-1');
+    const secondText = interaction.options.getString('text-2');
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('Drake!')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/drake?text1=${encodeURIComponent(firstText)}&text2=${encodeURIComponent(secondText)}`)
-      ]
+          .setTitle('Drake!')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(`https://api.popcat.xyz/drake?text1=${encodeURIComponent(firstText)}&text2=${encodeURIComponent(secondText)}`),
+      ],
     });
   },
 };

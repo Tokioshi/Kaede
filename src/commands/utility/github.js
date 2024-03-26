@@ -12,42 +12,42 @@ module.exports = {
         .setRequired(true))
     .setDMPermission(false),
   async execute(interaction) {
-    let users = interaction.options.getString('username');
+    const users = interaction.options.getString('username');
 
-    let res = await axios.get(`https://api.popcat.xyz/github/${encodeURIComponent(users)}`);
-    let json = await res.data;
+    const res = await axios.get(`https://api.popcat.xyz/github/${encodeURIComponent(users)}`);
+    const json = await res.data;
 
-    if(json.error) {
+    if (json.error) {
       interaction.reply({
         embeds: [
           new EmbedBuilder()
-          .setColor(interaction.client.config.embed.fail)
-          .setDescription('Please input a valid user name!')
+            .setColor(interaction.client.config.embed.fail)
+            .setDescription('Please input a valid user name!'),
         ],
-        ephemeral: true
+        ephemeral: true,
       });
-    };
+    }
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle(capitalizeFirstLetter(json.name))
-        .setColor(interaction.client.config.embed.default)
-        .setThumbnail(json.avatar)
-        .setURL(json.url)
-        .setDescription(json.bio)
-        .addFields(
-          { name: 'Account Type', value: json.account_type, inline: true },
-          { name: 'Company', value: json.company, inline: true },
-          { name: 'Repository', value: json.public_repos, inline: true },
-          { name: 'Followers', value: json.followers, inline: true },
-          { name: 'Following', value: json.following, inline: true },
-          { name: 'Location', value: json.location, inline: true },
-          { name: 'Email', value: json.email, inline: true },
-          { name: 'Create', value: dateForm2(json.created_at), inline: true },
-          { name: 'Updated', value: dateForm2(json.updated_at), inline: true }
-        )
-      ]
+          .setTitle(capitalizeFirstLetter(json.name))
+          .setColor(interaction.client.config.embed.default)
+          .setThumbnail(json.avatar)
+          .setURL(json.url)
+          .setDescription(json.bio)
+          .addFields(
+            { name: 'Account Type', value: json.account_type, inline: true },
+            { name: 'Company', value: json.company, inline: true },
+            { name: 'Repository', value: json.public_repos, inline: true },
+            { name: 'Followers', value: json.followers, inline: true },
+            { name: 'Following', value: json.following, inline: true },
+            { name: 'Location', value: json.location, inline: true },
+            { name: 'Email', value: json.email, inline: true },
+            { name: 'Create', value: dateForm2(json.created_at), inline: true },
+            { name: 'Updated', value: dateForm2(json.updated_at), inline: true },
+          ),
+      ],
     });
   },
 };

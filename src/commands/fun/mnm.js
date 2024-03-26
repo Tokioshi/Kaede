@@ -4,20 +4,20 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('mnm')
     .setDescription('Make your picture into a shape of m&ms!')
-    .addUserOption(option => 
+    .addUserOption(option =>
       option.setName('user')
         .setDescription('Mention a user'))
     .setDMPermission(false),
   async execute(interaction) {
-    let user = interaction.options.getUser('user') || interaction.user;
+    const user = interaction.options.getUser('user') || interaction.user;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle("MNM!")
-        .setColor(interaction.client.config.embed.default)
-        .setImage(`https://api.popcat.xyz/mnm?image=${user.displayAvatarURL({ extension: 'png' })}`)
-      ]
+          .setTitle('MNM!')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(`https://api.popcat.xyz/mnm?image=${user.displayAvatarURL({ extension: 'png' })}`),
+      ],
     });
   },
 };

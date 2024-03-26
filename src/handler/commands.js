@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { REST, Routes } = require('discord.js');
-const { clientId, guildId } = require('../config/config');
+const { clientId } = require('../config/config');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -14,12 +14,13 @@ function readCommands(dir) {
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
       readCommands(filePath);
-    } else if (file.endsWith('.js')) {
+    }
+    else if (file.endsWith('.js')) {
       const command = require(filePath);
       commands.push(command.data.toJSON());
-    };
-  };
-};
+    }
+  }
+}
 
 readCommands(commandsPath);
 
@@ -35,7 +36,8 @@ const rest = new REST({ version: '10' }).setToken(process.env.token);
     );
 
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  } catch (error) {
+  }
+  catch (error) {
     console.error(error);
-  };
+  }
 })();

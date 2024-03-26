@@ -7,16 +7,16 @@ module.exports = {
     .setDescription('Get a random high five image!')
     .setDMPermission(false),
   async execute(interaction) {
-    let res = await axios.get('https://api.waifu.pics/sfw/highfive');
-    let json = await res.data;
+    const res = await axios.get('https://api.waifu.pics/sfw/highfive');
+    const json = await res.data;
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-        .setTitle('High Five')
-        .setColor(interaction.client.config.embed.default)
-        .setImage(json.url)
-      ]
+          .setTitle('High Five')
+          .setColor(interaction.client.config.embed.default)
+          .setImage(json.url),
+      ],
     });
   },
 };
