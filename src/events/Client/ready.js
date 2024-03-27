@@ -1,17 +1,11 @@
-const { Events, ActivityType } = require('discord.js');
+const { Events } = require('discord.js');
+const chalk = require('chalk');
 
 module.exports = {
   name: Events.ClientReady,
   once: true,
   async execute(client) {
-    console.log(`Ready! Logged in as ${client.user.tag}!`);
-    client.user.setPresence({
-      activities: [{
-        type: ActivityType.Custom,
-        name: 'customstatus',
-        state: '✈️ On Progress!',
-      }],
-      status: 'idle',
-    });
+    console.log(chalk.whiteBright('READY!'), chalk.white('Logged in as', chalk.italic(`${client.user.tag}!`)));
+    // console.log(`Ready! Logged in as ${client.user.tag}!`);
   },
 };
