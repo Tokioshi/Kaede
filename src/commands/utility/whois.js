@@ -31,8 +31,7 @@ module.exports = {
       embed.addFields(
         { name: 'Acknowledgements', value: 'Server Owner' },
       );
-    }
-    else if (member.permissions.has(PermissionFlagsBits.Administrator)) {
+    } else if (member.permissions.has(PermissionFlagsBits.Administrator)) {
       embed.addFields(
         { name: 'Acknowledgements', value: 'Server Admin' },
       );

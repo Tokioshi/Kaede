@@ -14,8 +14,7 @@ function readCommands(dir) {
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
       readCommands(filePath);
-    }
-    else if (file.endsWith('.js')) {
+    } else if (file.endsWith('.js')) {
       const command = require(filePath);
       commands.push(command.data.toJSON());
     }
@@ -36,8 +35,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.token);
     );
 
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
   }
 })();

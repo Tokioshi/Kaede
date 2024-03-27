@@ -55,8 +55,7 @@ module.exports = {
               ),
           ],
         });
-      }
-      else if (i.customId == '2') {
+      } else if (i.customId == '2') {
         i.update({
           components: [
             new ActionRowBuilder()

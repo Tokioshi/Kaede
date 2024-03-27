@@ -35,8 +35,7 @@ module.exports = {
             .setImage(json.color_image),
         ],
       });
-    }
-    else {
+    } else {
       const res = await axios.get('https://api.popcat.xyz/randomcolor');
       const json = await res.data;
 

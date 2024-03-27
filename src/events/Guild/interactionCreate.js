@@ -19,8 +19,7 @@ module.exports = {
 
       try {
         await command.execute(interaction);
-      }
-      catch (error) {
+      } catch (error) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()

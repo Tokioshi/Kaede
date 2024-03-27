@@ -11,13 +11,11 @@ module.exports = async (client) => {
       const stat = fs.statSync(filePath);
       if (stat.isDirectory()) {
         readCommands(filePath);
-      }
-      else if (file.endsWith('.js')) {
+      } else if (file.endsWith('.js')) {
         const command = require(filePath);
         if ('data' in command && 'execute' in command) {
           client.commands.set(command.data.name, command);
-        }
-        else {
+        } else {
           console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
         }
       }
@@ -32,13 +30,11 @@ module.exports = async (client) => {
       const stat = fs.statSync(filePath);
       if (stat.isDirectory()) {
         readEvents(filePath);
-      }
-      else if (file.endsWith('.js')) {
+      } else if (file.endsWith('.js')) {
         const event = require(filePath);
         if (event.once) {
           client.once(event.name, (...args) => event.execute(...args));
-        }
-        else {
+        } else {
           client.on(event.name, (...args) => event.execute(...args));
         }
       }
